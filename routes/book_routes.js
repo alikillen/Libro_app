@@ -1,6 +1,6 @@
 const express = require("express")
-const bookRouter = express.Router()
-const { getBooks, getBook } = require("../controllers/books_controller")
+const router = express.Router()
+const { getBooks, getBook, makeBook } = require("../controllers/books_controller")
 
 // READ
 // GET on '/posts'
@@ -14,6 +14,7 @@ router.get("/:id", getBook)
 
 // CREATE
 // POST on '/posts'
+router.post("/", makeBook)
 // Creates a new post
 
 // DELETE

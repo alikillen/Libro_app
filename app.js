@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
-// const bookRouter = require("./routes/book_routes")
+const bookRouter = require("./routes/book_routes")
 
 const port = 3000
 
@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/libro_app"
-// when we need to deploy
+// when we need to deploy:
 // if(process.env.NODE_ENV !== "production"){
 //   require("dotenv").config();
 // }
