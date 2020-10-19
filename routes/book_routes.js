@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { getBooks, getBook, makeBook } = require("../controllers/books_controller")
+const { getBooks, getBook, makeBook, removeBook } = require("../controllers/books_controller")
 
 // READ
 // GET on '/posts'
@@ -19,6 +19,7 @@ router.post("/", makeBook)
 
 // DELETE
 // DELETE on '/posts/:id'
+router.delete("/:id", removeBook)
 // Deletes a post with id
 
 // UPDATE

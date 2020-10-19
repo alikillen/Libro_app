@@ -6,12 +6,17 @@
 // check Book and bookinstance naming
 // check against expressCRUD lesson
 
+// nextID function still causing issues - need to fix
+
 const bookModel = require("../models/book.js")
+const { v4: uuidv4 } = require('uuid');
 
 const getAllBooks = function(req) {
 	return Book
 }
+// book is undefined??
 
+// maybe shouldnt use uuid - how can we put id in the req url when its a massive random string
 const getBookById = function(req) {
 	let BookInstance = Book[req.params.id]
 	if (BookInstance) return BookInstance
@@ -22,14 +27,17 @@ const addBook = function(req){
   try {
     const date = Date.now()
     let Book = {
+      id: uuidv4(),
+      // this is needed and it is generating a unique string ID
       title: req.body.title,
       author: req.body.author,
       category: req.body.category,
       published_year: req.body.published_year,
       create_date: date      
     }
-    // generate ID for each obj
+    // generate ID for each obj - this isnt working and returns book is undefined??
     // Book[getNextId()]=Book
+    
     return Book
   }
   catch(error){
@@ -45,8 +53,16 @@ const addBook = function(req){
 //   return nextId
 // }
 
+const deleteBook = function(id){
+  if (Object.keys(Book).includes(id)){
+    delete Book[id]
+  }
+  return Book
+}
+
 module.exports = {
 	getAllBooks,
   getBookById,
-  addBook
+  addBook,
+  deleteBook
 }

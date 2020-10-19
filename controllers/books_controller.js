@@ -1,4 +1,4 @@
-const {getAllBooks, getBookById, addBook} = require("../utils/utilities")
+const {getAllBooks, getBookById, addBook, deleteBook} = require("../utils/utilities")
 
 const getBooks = function (req, res) {
   res.send(getAllBooks(req))
@@ -24,8 +24,14 @@ const makeBook = function(req,res){
   }
 }
 
+const removeBook = function(req,res){
+  let Book = deleteBook(req.params.id)
+  res.send(Book)
+}
+
 module.exports = {
   getBooks,
   getBook,
-  makeBook
+  makeBook,
+  removeBook
 }
