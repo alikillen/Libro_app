@@ -10,6 +10,8 @@
 
 const bookModel = require("../models/book.js")
 const { v4: uuidv4 } = require('uuid');
+// i think this next line is wrong
+const { book } = require("../routes/book_routes.js");
 
 const getAllBooks = function(req) {
 	return Book
@@ -20,7 +22,8 @@ const getAllBooks = function(req) {
 const getBookById = function(req) {
 	let BookInstance = Book[req.params.id]
 	if (BookInstance) return BookInstance
-	else req.error = "Book not found"
+  else req.error = "Book not found"
+  // NEED TO GET BOOK FROM DB HERE
 }
 
 const addBook = function(req){
@@ -35,6 +38,9 @@ const addBook = function(req){
       published_year: req.body.published_year,
       create_date: date      
     }
+    
+    // NEED TO SAVE BOOK HERE TO DB
+
     // generate ID for each obj - this isnt working and returns book is undefined??
     // Book[getNextId()]=Book
     
@@ -54,15 +60,27 @@ const addBook = function(req){
 // }
 
 const deleteBook = function(id){
-  if (Object.keys(Book).includes(id)){
-    delete Book[id]
-  }
-  return Book
+  return Book.findByIdAndRemove(id)
+  // if (Object.keys(Book).includes(id)){
+  //   delete Book[id]
+  // }
+  // return Book
 }
+
+// update post
+// returns a query
+const updateBook = function (req) {
+  req.body.create_date = Date.now();
+  // use new:true to return the updated post rather than the original post when the query is executed
+  return Book.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+  });
+};
 
 module.exports = {
 	getAllBooks,
   getBookById,
   addBook,
-  deleteBook
+  deleteBook,
+  updateBook
 }

@@ -1,4 +1,4 @@
-const {getAllBooks, getBookById, addBook, deleteBook} = require("../utils/utilities")
+const {getAllBooks, getBookById, addBook, deleteBook, updateBook} = require("../utils/utilities")
 
 const getBooks = function (req, res) {
   res.send(getAllBooks(req))
@@ -25,13 +25,38 @@ const makeBook = function(req,res){
 }
 
 const removeBook = function(req,res){
-  let Book = deleteBook(req.params.id)
-  res.send(Book)
+      // execute the query from deletePost
+      deleteBook(req.params.id).exec((err) => {
+        if (err) {
+            res.status(500);
+            return res.json({
+                error: err.message
+            });
+        }
+        res.sendStatus(204);
+
+    });
+  // let Book = deleteBook(req.params.id)
+  // res.send(Book)
 }
+
+const changeBook = function (req, res) {
+  // execute the query from updateBook
+  updateBook(req).exec((err, Book) => {
+      if (err) {
+          res.status(500);
+          return res.json({
+              error: err.message
+          });
+      }
+      res.send(Book);
+  });
+};
 
 module.exports = {
   getBooks,
   getBook,
   makeBook,
-  removeBook
+  removeBook,
+  changeBook
 }
