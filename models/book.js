@@ -23,8 +23,8 @@ Book = new Schema({
     required: true,
   },
   create_date: {
-    type: Date,
-    required: true,
+    type: Date
+    // required: true,
   }
 
 })

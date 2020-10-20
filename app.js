@@ -51,14 +51,15 @@ app.get("/register", (req,res)=> {
 	res.render("register")
 })
 
-app.post("/books/addBook", (req, res) => {
+app.post("/books/new", (req, res) => {
   var addedBook = {
 		title: req.body.title,
-		author: req.body.title,
-		category: req.body.title,
+		author: req.body.author,
+		category: req.body.category,
 		published_year: req.body.published_year
 	}
 	new Book(addedBook).save()
+	console.log(addedBook)
 	res.redirect("/")
 })
 
