@@ -1,10 +1,11 @@
 const express = require('express')
-var exphbs  = require('express-handlebars');
+var exphbs = require('express-handlebars');
 const app = express()
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const bookRouter = require("./routes/book_routes")
+const api_helper = require('./API_helper')
 // import {v4 as uuidv4} from 'uuid'
 
 const port = 3000
@@ -39,6 +40,32 @@ app.set('view engine', 'handlebars');
 app.get('/', (req, res) => {
   res.render("home");
 })
+
+app.get("/search", (req, res)=>{
+	res.render("search")
+})
+
+app.get("/register", (req,res)=> {
+	res.render("register")
+})
+
+app.get("/books", (req, res)=> {
+	res.render("books")
+})
+
+app.get("/login", (req, res)=>{
+	res.render("login")
+})
+
+// app.get('/getAPIResponse', (req, res) => {
+// 	api_helper.make_API_call('https://jsonplaceholder.typicode.com/todos/1')
+// 	.then(response => {
+// 			res.json(response)
+// 	})
+// 	.catch(error => {
+// 			res.send(error)
+// 	})
+// })
 
 app.use("/books", bookRouter)
 
