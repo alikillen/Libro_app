@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 // set ID here as required string?
 
 // define new schema
-bookSchema = new Schema({
+Book = new Schema({
   title: {
     type: String,
     required: true,
@@ -29,4 +29,4 @@ bookSchema = new Schema({
 
 })
 
-module.exports = mongoose.model("Book", bookSchema)
+module.exports = mongoose.model("Book", Book)

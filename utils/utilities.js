@@ -8,13 +8,11 @@
 
 // nextID function still causing issues - need to fix
 
-const bookModel = require("../models/book.js")
+const Book = require("../models/book.js")
 const { v4: uuidv4 } = require('uuid');
-// i think this next line is wrong
-const { book } = require("../routes/book_routes.js");
 
 const getAllBooks = function(req) {
-	return Book
+	return Book.find()
 }
 // book is undefined??
 
