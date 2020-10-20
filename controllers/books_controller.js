@@ -1,28 +1,37 @@
-const {getAllBooks, getBookById, addBook, deleteBook, updateBook} = require("../utils/utilities")
+const { getAllBooks, getBookById, addBook, deleteBook, updateBook} = require("../utils/utilities")
 
 const getBooks = function (req, res) {
-  res.send(getAllBooks(req))
+  getAllBooks(req).exec((err, books) => {
+    if (err) {
+      res.status(500);
+      return res.json ({
+        error: err.message
+      });
+    }
+    res.send(books);
+  })
 }
 
 const getBook = function (req,res) {
-  let Book = getBookById(req)
-  if (Book) res.send(Book)
-  else {
-        res.status(404)
-        res.send(req.error)
-  }
+  getBookById(req).exec((err, x) => {
+    if (err) {
+      res.status(400);
+      return res.send("Book not found");
+    }
+    res.send(x); 
+  });
 }
 
 const makeBook = function(req,res){
-  let Book = addBook(req)
-  if (Book) {
-    res.status(201)
-    res.send(Book)
-  } else {
-    res.status(500)
-    res.send(`error occured: ${req.error}`)
+  addBook(req).save((err, post) => {
+    if (err) {
+      res.status(500);
+      return res.json({ error: err.message });
+    }
+    res.status(201);
+    res.send(post);
+    });
   }
-}
 
 const removeBook = function(req,res){
       // execute the query from deletePost
@@ -36,20 +45,17 @@ const removeBook = function(req,res){
         res.sendStatus(204);
 
     });
-  // let Book = deleteBook(req.params.id)
-  // res.send(Book)
 }
 
 const changeBook = function (req, res) {
-  // execute the query from updateBook
-  updateBook(req).exec((err, Book) => {
+  updateBook(req).exec((err, data) => {
       if (err) {
           res.status(500);
           return res.json({
               error: err.message
           });
       }
-      res.send(Book);
+      res.send(data);
   });
 };
 
