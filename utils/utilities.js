@@ -27,15 +27,28 @@ const getBookById = function(req) {
 const addBook = function(req){
   try {
     const date = Date.now()
-    let Book = {
-      id: uuidv4(),
-      // this is needed and it is generating a unique string ID
+    // let Book = {
+    //   id: uuidv4(),
+    //   // this is needed and it is generating a unique string ID
+    //   title: req.body.title,
+    //   author: req.body.author,
+    //   category: req.body.category,
+    //   published_year: req.body.published_year,
+    //   create_date: date      
+    // }
+
+    let Book = Book.create
+    (
+      { 
       title: req.body.title,
       author: req.body.author,
       category: req.body.category,
       published_year: req.body.published_year,
-      create_date: date      
-    }
+      create_date: date     
+     }, function (err, Book) {
+      if (err) return handleError(err);
+      // saved!
+    });
     
     // NEED TO SAVE BOOK HERE TO DB
 

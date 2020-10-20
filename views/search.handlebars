@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>google books API search practice</title>
+</head>
+<body>
+  <h1>welcome to libro's search function!</h1>
+  <p>search google books API by title or author:</p>
+  <input class="terms" id="terms" type="text">
+  <button class="search-button" onClick ="searchBook()">Search</button>
+
+  <div class="results">
+
+  </div>
+
+  <script>
+    const api_helper = require('./API_helper')
+    
+    // diff functions to search by author and by title (default search returns all???)
+    
+    function searchBook(){
+
+    // get search Terms from HTML - verify input is a string?
+    const getTerms = document.getElementById("terms").value
+    // return searchTerms
+    console.log(getTerms);
+
+    // seperate into array of words to input into req, eliminate whitespace
+    const searchTerms = getTerms.split(" ")
+    console.log(searchTerms)
+
+     // dont dynamically create variables, but need to iteratively return them
+    //for (var i = 0; i < searchTerms.length -1; i++) {
+      //return searchTerms[i]
+        // we want to return all of the terms into a string
+    //}
+
+    const termsString = searchTerms.join(" + ")
+    console.log(termsString)      
+
+    // USE REQUEST MODULE -  put array elements into search request string iteratively
+
+    api_helper.make_API_call(`https://www.googleapis.com/books/v1/volumes?q=${termsString}}`)
+	    .then(response => {
+			res.json(response)
+	    })
+	    .catch(error => {
+			res.send(error)
+      })
+
+      // fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms`)
+      //     .then(response => response.json())
+      //     .then((data) => {
+        
+      //       console.log(data)              
+      //   // iterating through data obj and setting variables------------------------------------
+      //     const bookTitle = data.title;
+      //     const bookAuthor = data
+                
+
+        //   now need to return those variables into HTML page--------------------------------------------
+         
+    }
+
+    console.log(searchBook())
+    
+
+  </script>
+</body>
+</html>
