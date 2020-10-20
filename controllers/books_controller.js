@@ -23,13 +23,15 @@ const getBook = function (req,res) {
 }
 
 const makeBook = function(req,res){
-  addBook(req).save((err, post) => {
+  addBook(req).save((err, book) => {
     if (err) {
       res.status(500);
       return res.json({ error: err.message });
     }
     res.status(201);
-    res.send(post);
+    res.send(book);
+    console.log("book created!")
+    // should this route back to handlebars allbooks page?
     });
   }
 

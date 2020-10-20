@@ -1,2 +1,27 @@
-<h1>all user books here</h1>
+{{#if books}}
+  {{#each books }}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ this.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ this.author }}</h6>
+        <p class="card-text">{{ this.category }}</p>
+        <h6 class="card-subtitle mb-2 text-muted">{{ this.published_year }}</h6>
+        <button type="button" class="btn btn-primary">Want to Read</button>
+        <button type="button" class="btn btn-success">Reading</button>
+        <button type="button" class="btn btn-warning">Read</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>        
+  {{/each}}
 
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+{{else}}
+  <h1>game over fam! there's been an error and your book object probably doesnt exist.</h1>
+{{/if}}

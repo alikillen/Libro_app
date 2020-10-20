@@ -4,13 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <title>Document</title>
+  <title>Main</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="http://localhost:3000/">Libro</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:3000/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:3000/books">My Books</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Options
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Account</a>
+          <a class="dropdown-item" href="http://localhost:3000/books/addBook">Create Book</a>
+
+      </li>
+ 
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" id="terms" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick ="searchBook()">Search</button>
+    </form>
+  </div>
+</nav>
   {{{body}}}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+   
+    
+    // diff functions to search by author and by title (default search returns all???)
+    
+    function searchBook(){
+
+    // get search Terms from HTML - verify input is a string?
+    const getTerms = document.getElementById("terms").value
+    // return searchTerms
+    console.log(getTerms);
+
+    // seperate into array of words to input into req, eliminate whitespace
+    const searchTerms = getTerms.split(" ")
+    console.log(searchTerms)
+
+    const termsString = searchTerms.join(" + ")
+    console.log(termsString)   
+
+    console.log("search func")
+	  
+
+    // USE REQUEST MODULE -  put array elements into search request string iteratively
+    }
+
+    console.log(searchBook())
+    
+
+  </script>
 </body>
 </html>

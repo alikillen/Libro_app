@@ -60,7 +60,8 @@ app.post("/books/new", (req, res) => {
 	}
 	new Book(addedBook).save()
 	console.log(addedBook)
-	res.redirect("/")
+	res.redirect("/books")
+	// this needs to render handlebars page??
 })
 
 // app.get("/books", (req, res)=> {
@@ -74,6 +75,24 @@ app.get("/login", (req, res)=>{
 app.get("/books/addBook", (req, res)=>{
 	res.render("addBook")
 })
+
+app.get("/books", async function(req,res) {
+	let books = await Book.find({}).lean()
+	console.log(books)
+	res.render("books", {books})
+	
+})
+
+// app.get('/books', function(req, res) {
+// 	// var collection = req.db.get('quotes');
+// 	Book.find({}, {}, function(err, book) {
+// 			var obj = {
+// 				fromDB: book,
+// 				title: "This is a title of the page"
+// 			}
+// 			res.render('books', obj);
+// 	});
+// });
 
 
 

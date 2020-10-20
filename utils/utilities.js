@@ -13,6 +13,7 @@ const addBook = function(req){
   let date = Date.now()
   req.body.create_date = date;
   return new Book(req.body);
+  // this func needs to render handlebars page?
 }   
 
 const deleteBook = function(id){
