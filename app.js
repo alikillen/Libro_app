@@ -1,5 +1,5 @@
 const express = require('express')
-var exphbs  = require('express-handlebars');
+var exphbs = require('express-handlebars');
 const app = express()
 const bodyParser = require("body-parser")
 const cors = require("cors")
@@ -45,14 +45,16 @@ app.get("/search", (req, res)=>{
 	res.render("search")
 })
 
-app.get("/search", (req,res)=>{
-	api_helper.make_API_call('https://jsonplaceholder.typicode.com/todos/1')
-	.then(response => {
-			res.json(response)
-	})
-	.catch(error => {
-			res.send(error)
-	})
+app.get("/register", (req,res)=> {
+	res.render("register")
+})
+
+app.get("/books", (req, res)=> {
+	res.render("books")
+})
+
+app.get("/login", (req, res)=>{
+	res.render("login")
 })
 
 // app.get('/getAPIResponse', (req, res) => {
