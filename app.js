@@ -6,12 +6,14 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 const bookRouter = require("./routes/book_routes")
 const api_helper = require('./API_helper')
+const Book = require("./models/book.js")
 // import {v4 as uuidv4} from 'uuid'
 
 const port = 3000
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/libro_app"
 // when we need to deploy:
@@ -49,13 +51,30 @@ app.get("/register", (req,res)=> {
 	res.render("register")
 })
 
-app.get("/books", (req, res)=> {
-	res.render("books")
+app.post("/books/addBook", (req, res) => {
+  var addedBook = {
+		title: req.body.title,
+		author: req.body.title,
+		category: req.body.title,
+		published_year: req.body.published_year
+	}
+	new Book(addedBook).save()
+	res.redirect("/")
 })
+
+// app.get("/books", (req, res)=> {
+// 	res.render("books")
+// })
 
 app.get("/login", (req, res)=>{
 	res.render("login")
 })
+
+app.get("/books/addBook", (req, res)=>{
+	res.render("addBook")
+})
+
+
 
 // app.get('/getAPIResponse', (req, res) => {
 // 	api_helper.make_API_call('https://jsonplaceholder.typicode.com/todos/1')

@@ -17,6 +17,21 @@ router.get("/:id", getBook)
 router.post("/new", makeBook)
 // Creates a new post
 
+// router.post('/new', function (req, res) {
+//   var Body = req.body.params;
+//   Book.db.libro_app.insertOne({_id: 1}, {$set:{name:username}}, {new: true}, function(err, Book){
+//       if(err){
+//           console.log("Something wrong when posting book data!");
+//       }
+//       console.log(Book);
+//   }
+//   );
+
+
+
+
+// router.post()
+
 // DELETE
 // DELETE on '/books/:id'
 router.delete("/:id", removeBook)
