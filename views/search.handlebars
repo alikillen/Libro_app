@@ -16,7 +16,7 @@
   </div>
 
   <script>
-    const api_helper = require('.../API_helper')
+    //const api_helper = require('.../API_helper')
     
     // diff functions to search by author and by title (default search returns all???)
     
@@ -43,37 +43,33 @@
     // USE REQUEST MODULE -  put array elements into search request string iteratively
 
 
-    function(url){
-        return new Promise((resolve, reject) => {
-            request(url, { json: true }, (err, res, body) => {
-              if (err) reject(err)
-              resolve(body)
-            });
-        })
-    }
-    api_helper.make_API_call(`https://www.googleapis.com/books/v1/volumes?q=${termsString}}`)
-	    .then(response => {
-			res.json(response)
-	    })
-	    .catch(error => {
-			res.send(error)
-      })
 
-      // fetch(`https://www.googleapis.com/books/v1/volumes?q=search+terms`)
-      //     .then(response => response.json())
-      //     .then((data) => {
-        
-      //       console.log(data)              
-      //   // iterating through data obj and setting variables------------------------------------
+//fetch(`https://www.googleapis.com/books/v1/volumes?q=${termsString}key=AIzaSyCj3QCMvs6qD4ysWtfSmCAArvwDubHRqk0}`)
+  //.then(response => response.json())
+  //.then((data) => {console.log(data)})
+
+  fetch(`https://www.googleapis.com/books/v1/volumes?q=${termsString}&key=AIzaSyCj3QCMvs6qD4ysWtfSmCAArvwDubHRqk0`)
+  .then(response => response.json())
+  .then(result => {
+//{{!-- this.setState({ books: result.items}) --}}
+console.log(result)
+})
+}
+  
+  //     fetch(`https://www.googleapis.com/books/v1/volumes?q=${termsString}}`)
+    //        .then(response => response.json())
+      //      .then((data) => {
+        //         console.log(data)
+          //   })
+    //   // iterating through data obj and setting variables------------------------------------
       //     const bookTitle = data.title;
       //     const bookAuthor = data
                 
 
         //   now need to return those variables into HTML page--------------------------------------------
          
-    }
-
-    console.log(searchBook())
+    
+    //console.log(searchBook())
     
 
   </script>
