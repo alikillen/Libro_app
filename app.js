@@ -7,6 +7,7 @@ const mongoose = require("mongoose")
 const bookRouter = require("./routes/book_routes")
 const api_helper = require('./API_helper')
 const Book = require("./models/book.js")
+const path = require ("path")
 // import {v4 as uuidv4} from 'uuid'
 
 const port = 3000
@@ -15,6 +16,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('views/images')); 
+app.use(express.static(path.join(__dirname, 'stylesheets')))
 
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/libro_app"
 // when we need to deploy:
