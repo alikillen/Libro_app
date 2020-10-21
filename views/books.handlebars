@@ -1,3 +1,5 @@
+  {{!-- <link rel ="stylesheet" href="./layouts/cards.css"> --}}
+
 {{#if books}}
   {{#each books }}
     <div class="card" style="width: 18rem;">
@@ -7,8 +9,11 @@
         <p class="card-text">{{ this.category }}</p>
         <h6 class="card-subtitle mb-2 text-muted">{{ this.published_year }}</h6>
         <button type="button" class="btn btn-outline-primary">Want to Read</button>
+        <br>
         <button type="button" class="btn btn-outline-success">Reading</button>
+        <br>
         <button type="button" class="btn btn-outline-warning">Read</button>
+        <br>
         <button type="button" class="btn btn-outline-danger">Delete</button>
       </div>        
   {{/each}}

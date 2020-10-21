@@ -14,6 +14,7 @@ const port = 3000
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('views/images')); 
 
 const dbConn = process.env.MONGODB_URI || "mongodb://localhost/libro_app"
 // when we need to deploy:
